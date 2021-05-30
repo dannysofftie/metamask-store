@@ -7,8 +7,6 @@
     "license": "MIT",
     "private": true,
     "dependencies": {
-        "aedes": "^0.46.0",
-        "aedes-persistence": "^8.1.3",
         "altair-fastify-plugin": "^4.0.4",
         "dotenv": "^10.0.0",
         "eth-sig-util": "^3.0.1",
