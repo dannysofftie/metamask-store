@@ -52,10 +52,12 @@ export type TransactionBlock = {
   gasUsed?: Maybe<Scalars['Number']>;
   type?: Maybe<Scalars['String']>;
   blockHash?: Maybe<Scalars['String']>;
-  blockNumber?: Maybe<Scalars['String']>;
+  blockNumber?: Maybe<Scalars['Number']>;
   cumulativeGasUsed?: Maybe<Scalars['Number']>;
   transactionHash?: Maybe<Scalars['String']>;
   transactionIndex?: Maybe<Scalars['Number']>;
+  createdAt?: Maybe<Scalars['Date']>;
+  updatedAt?: Maybe<Scalars['Date']>;
 };
 
 export type NonceResponse = {
@@ -96,7 +98,7 @@ export type TransactionBlockInput = {
   gasUsed?: Maybe<Scalars['Number']>;
   type?: Maybe<Scalars['String']>;
   blockHash?: Maybe<Scalars['String']>;
-  blockNumber?: Maybe<Scalars['String']>;
+  blockNumber?: Maybe<Scalars['Number']>;
   cumulativeGasUsed?: Maybe<Scalars['Number']>;
   transactionHash?: Maybe<Scalars['String']>;
   transactionIndex?: Maybe<Scalars['Number']>;
@@ -281,10 +283,12 @@ export type TransactionBlockResolvers<ContextType = MercuriusContext, ParentType
   gasUsed?: Resolver<Maybe<ResolversTypes['Number']>, ParentType, ContextType>;
   type?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   blockHash?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  blockNumber?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  blockNumber?: Resolver<Maybe<ResolversTypes['Number']>, ParentType, ContextType>;
   cumulativeGasUsed?: Resolver<Maybe<ResolversTypes['Number']>, ParentType, ContextType>;
   transactionHash?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   transactionIndex?: Resolver<Maybe<ResolversTypes['Number']>, ParentType, ContextType>;
+  createdAt?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>;
+  updatedAt?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>;
   isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
@@ -401,10 +405,12 @@ export interface Loaders<TContext = import('mercurius').MercuriusContext & { rep
     gasUsed?: LoaderResolver<Maybe<Scalars['Number']>, TransactionBlock, {}, TContext>;
     type?: LoaderResolver<Maybe<Scalars['String']>, TransactionBlock, {}, TContext>;
     blockHash?: LoaderResolver<Maybe<Scalars['String']>, TransactionBlock, {}, TContext>;
-    blockNumber?: LoaderResolver<Maybe<Scalars['String']>, TransactionBlock, {}, TContext>;
+    blockNumber?: LoaderResolver<Maybe<Scalars['Number']>, TransactionBlock, {}, TContext>;
     cumulativeGasUsed?: LoaderResolver<Maybe<Scalars['Number']>, TransactionBlock, {}, TContext>;
     transactionHash?: LoaderResolver<Maybe<Scalars['String']>, TransactionBlock, {}, TContext>;
     transactionIndex?: LoaderResolver<Maybe<Scalars['Number']>, TransactionBlock, {}, TContext>;
+    createdAt?: LoaderResolver<Maybe<Scalars['Date']>, TransactionBlock, {}, TContext>;
+    updatedAt?: LoaderResolver<Maybe<Scalars['Date']>, TransactionBlock, {}, TContext>;
   };
 
   NonceResponse?: {

@@ -29,10 +29,12 @@ type TransactionBlock {
   gasUsed: Number
   type: String
   blockHash: String
-  blockNumber: String
+  blockNumber: Number
   cumulativeGasUsed: Number
   transactionHash: String
   transactionIndex: Number
+  createdAt: Date
+  updatedAt: Date
 }
 type NonceResponse {
   nonce: String!
@@ -63,7 +65,7 @@ input TransactionBlockInput {
   gasUsed: Number
   type: String
   blockHash: String
-  blockNumber: String
+  blockNumber: Number
   cumulativeGasUsed: Number
   transactionHash: String
   transactionIndex: Number
