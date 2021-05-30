@@ -1,0 +1,14 @@
+type Mutation {
+  """
+  Called when user signs in
+  """
+  generateNonce(address: String!): NonceResponse
+  """
+  Expects publicAddress and signature to verify if this publicAddress has signed the correct nonce
+  """
+  verifySignature(input: SignatureVerificationInput!): VerificationResponse
+  """
+  Update invoice
+  """
+  updateInvoiceTransaction(input: InvoiceTransactionInput!, where: UpdateWhereId!): UpdateResponse
+}

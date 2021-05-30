@@ -1,0 +1,77 @@
+scalar Date
+scalar Number
+
+type User {
+  id: ID
+  publicAddress: String
+  nonce: String
+  createdAt: Date
+  updatedAt: Date
+}
+
+type Invoice {
+  id: ID
+  name: String
+  number: String
+  amount: Number
+  description: String
+  transaction: Transaction
+  createdAt: Date
+  updatedAt: Date
+}
+type Transaction {
+  transactionHash: String
+  blocks: [TransactionBlock]
+}
+type TransactionBlock {
+  to: String
+  from: String
+  gasUsed: Number
+  type: String
+  blockHash: String
+  blockNumber: String
+  cumulativeGasUsed: Number
+  transactionHash: String
+  transactionIndex: Number
+}
+type NonceResponse {
+  nonce: String!
+}
+input SignatureVerificationInput {
+  address: String
+  signature: String
+}
+
+type Error {
+  field: String
+  message: String
+}
+type VerificationPayload {
+  token: String
+  user: User
+}
+type VerificationResponse {
+  error: Error
+  payload: VerificationPayload
+}
+input UpdateWhereId {
+  id: ID!
+}
+input TransactionBlockInput {
+  to: String
+  from: String
+  gasUsed: Number
+  type: String
+  blockHash: String
+  blockNumber: String
+  cumulativeGasUsed: Number
+  transactionHash: String
+  transactionIndex: Number
+}
+input InvoiceTransactionInput {
+  transactionHash: String
+  block: TransactionBlockInput
+}
+type UpdateResponse {
+  message: String
+}

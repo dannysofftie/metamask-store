@@ -1,0 +1,6 @@
+type Query {
+  """
+  Request to get invoices
+  """
+  invoices: [Invoice!]
+}

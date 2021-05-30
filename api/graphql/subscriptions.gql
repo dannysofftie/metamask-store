@@ -1,0 +1,6 @@
+type Subscription {
+  """
+  Subscribe to this query to be notified when invoices gets updated
+  """
+  invoiceUpdated: Invoice
+}
