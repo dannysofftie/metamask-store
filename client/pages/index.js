@@ -1,4 +1,3 @@
-import { Image } from '@chakra-ui/image';
 import { Box, Container, Flex } from '@chakra-ui/layout';
 import { Spinner } from '@chakra-ui/spinner';
 import { chakra, useColorModeValue } from '@chakra-ui/system';
@@ -17,7 +16,7 @@ const HomePage = () => {
       <Container maxW='8xl'>
         {!userContext.state.authenticated ? (
           <Flex h='40vh' flexDir='column' alignItems='center' justifyContent='center'>
-            <Image objectFit='scale-down' h={300} src='/img/lock-icon.png' />
+            <chakra.img objectFit='scale-down' h={300} src='/img/lock-icon.png' />
             <chakra.p pr={{ base: 0, lg: 16 }} mb={4} fontSize='lg' color={useColorModeValue('brand.600', 'gray.400')} letterSpacing='wider'>
               Sign in to view and pay for pending invoices
             </chakra.p>

@@ -1,15 +1,15 @@
 import { AlertDialog, AlertDialogBody, AlertDialogCloseButton, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, Box, Button, chakra, Flex, HStack, IconButton, useColorMode, useColorModeValue, useDisclosure } from '@chakra-ui/react';
-import { DangerButton, PrimaryButton, SuccessButton } from 'components/buttons';
+import { DangerButton, PrimaryButton } from 'components/buttons';
 import { OriginalLogo } from 'components/logo';
 import ThemeSwitch from 'components/theme';
+import { useGenerateNonceMutation, useSignatureVerificationMutation } from 'hooks/auth';
 import { Fragment, useContext, useEffect, useRef, useState } from 'react';
 import { BiChevronRightCircle, BiLogOut, BiMenu, BiWindowClose } from 'react-icons/bi';
 import { sharedValues, UserContext } from 'state';
-import { bgColor, deleteCookie, NextLink, setCookie } from 'utils';
+import { bgColor, deleteCookie, setCookie } from 'utils';
+import Web3 from 'web3';
 import DesktopNavigation from './desktop';
 import MobileNavigation from './mobile';
-import Web3 from 'web3';
-import { useGenerateNonceMutation, useSignatureVerificationMutation } from 'hooks/auth';
 
 const navItems = [
   {

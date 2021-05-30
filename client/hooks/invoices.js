@@ -12,6 +12,22 @@ export const useInvoicesQuery = () => {
           number
           amount
           description
+          transaction {
+            transactionHash
+            blocks {
+              to
+              from
+              gasUsed
+              type
+              blockHash
+              blockNumber
+              cumulativeGasUsed
+              transactionHash
+              transactionIndex
+              createdAt
+              updatedAt
+            }
+          }
           createdAt
           updatedAt
         }
@@ -25,7 +41,7 @@ export const useUpdateInvoiceTransactionMutation = () => {
     return await graphqlQuery(
       gql`
         mutation updateInvoiceTransaction($input: InvoiceTransactionInput!, $where: UpdateWhereId!) {
-          updateInvoiceTransaction(input: $input, where: $where) {
+          data: updateInvoiceTransaction(input: $input, where: $where) {
             message
           }
         }
