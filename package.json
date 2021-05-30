@@ -1,0 +1,19 @@
+{
+  "name": "metamask",
+  "version": "1.0.0",
+  "description": "Sign in & Pay with Metamask browser plugin",
+  "main": "dist/index.js",
+  "repository": "git@github.com:dannysofftie/metamask-wallet.git",
+  "author": "Danny",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  },
+  "scripts": {
+    "build": "yarn build:next && yarn build:api",
+    "test": "yarn lint && yarn jest",
+    "build:next": "cd apps/client && yarn next build",
+    "build:api": "cd apps/api && yarn build"
+  }
+}
