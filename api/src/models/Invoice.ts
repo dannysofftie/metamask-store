@@ -19,7 +19,7 @@ const invoice = new Schema(
     description: String,
     amount: Number,
   },
-  { timestamps: { createdAt: true, updatedAt: true } }
+  { timestamps: true }
 );
 
 export const Invoice = model<IInvoiceDocument>('invoices', invoice);

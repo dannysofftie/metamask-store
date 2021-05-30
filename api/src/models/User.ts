@@ -15,7 +15,7 @@ const user = new Schema(
     publicAddress: String,
     nonce: String,
   },
-  { timestamps: { createdAt: true, updatedAt: true } }
+  { timestamps: true }
 );
 
 export const User = model<IUserDocument>('users', user);
