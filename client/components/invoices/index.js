@@ -9,18 +9,7 @@ import { formatCurrency } from 'utils';
 import Web3 from 'web3';
 
 const Invoice = ({ invoice, web3, account }) => {
-  const [transaction, updateTransaction] = useState(null);
   const { mutateAsync: updateInvoiceMutation } = useUpdateInvoiceTransactionMutation();
-
-  // get transaction details
-  useEffect(() => {
-    (async () => {
-      if (invoice?.transaction && web3) {
-        const trans = await web3.eth.getTransaction(invoice.transaction);
-        console.log(trans);
-      }
-    })();
-  }, [invoice, web3]);
 
   const sendTransaction = async invoice => {
     web3.eth

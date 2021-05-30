@@ -17,7 +17,7 @@ const authMutations: IResolvers['Mutation'] = {
     return { nonce: user.nonce };
   },
   async verifySignature(root, args, ctx, info) {
-    const user = await ctx.app.models.User.findOne({ publicAddress: args.input.address });
+    const user = await ctx.app.models.User.findOne({ publicAddress: args.input.address }).lean();
 
     const params = {
       nonceBuffer: ethUtils.bufferToHex(Buffer.from(user.nonce, 'utf-8')),

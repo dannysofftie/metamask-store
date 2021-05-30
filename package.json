@@ -7,13 +7,15 @@
   "author": "Danny",
   "license": "MIT",
   "private": true,
-  "devDependencies": {
-    "lerna": "^4.0.0"
-  },
+  "devDependencies": {},
   "scripts": {
+    "dev": "yarn concurrently 'cd api && yarn dev' 'cd client && yarn dev'",
     "build": "yarn build:next && yarn build:api",
     "test": "yarn lint && yarn jest",
     "build:next": "cd apps/client && yarn next build",
     "build:api": "cd apps/api && yarn build"
+  },
+  "dependencies": {
+    "concurrently": "^6.2.0"
   }
 }
