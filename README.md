@@ -22,3 +22,5 @@ A web app that users sign-in on Metamask, to pay for pending invoices. All signe
 
 4. Run development server (This will fire up both server and client)
    > `yarn dev` or `npm run dev`
+5. Running tests (Will run both client side and server side unit tests)
+   > `yarn test`

@@ -11,9 +11,11 @@
   "scripts": {
     "dev": "yarn concurrently 'cd api && yarn dev' 'cd client && yarn dev'",
     "build": "yarn build:next && yarn build:api",
-    "test": "yarn lint && yarn jest",
-    "build:next": "cd apps/client && yarn next build",
-    "build:api": "cd apps/api && yarn build"
+    "test": "yarn test:api && yarn test:next",
+    "build:api": "cd api && yarn build",
+    "build:next": "cd client && yarn next build",
+    "test:api": "cd client && yarn test",
+    "test:next": "cd client && yarn test"
   },
   "dependencies": {
     "concurrently": "^6.2.0"
