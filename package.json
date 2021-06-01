@@ -9,6 +9,7 @@
   "private": true,
   "devDependencies": {},
   "scripts": {
+    "install:deps": "yarn && cd api && yarn && cd client && yarn",
     "dev": "yarn concurrently 'cd api && yarn dev' 'cd client && yarn dev'",
     "build": "yarn build:next && yarn build:api",
     "test": "yarn test:api && yarn test:next",

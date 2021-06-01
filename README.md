@@ -15,11 +15,8 @@ A web app that users sign-in on Metamask, to pay for pending invoices. All signe
 1. Clone remote repo
    > `git clone https://github.com/dannysofftie/metamask-store.git`
 2. Install dependencies
-   > `yarn` or `npm install`
-3. Update `.env` environment variables.
-
-   > `cp .env.sample .env`
-
+   > `yarn install:deps` or `npm run install:deps`
+3. Update `.env` environment variables. In both `api/` & `client/` folders
 4. Run development server (This will fire up both server and client)
    > `yarn dev` or `npm run dev`
 5. Running tests (Will run both client side and server side unit tests)
