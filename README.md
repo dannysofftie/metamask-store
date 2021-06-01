@@ -30,5 +30,5 @@ A web app that users sign-in on Metamask, to pay for pending invoices. All signe
 Ensure you have Docker and docker-compose installed before you proceed.
 
 1. Change directory and make `start.sh` executable
-   > `chmod +x start.sh && ./start.sh`
+   > `cd jenkins && chmod +x start.sh && ./start.sh`
 2. Jenkins will be accessible at `http://127.0.0.1:8080`
