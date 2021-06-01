@@ -1,6 +1,15 @@
 scalar Date
 scalar Number
 
+type ApiError {
+  name: String
+  message: String
+}
+type ApiResponse {
+  message: String
+  error: ApiError
+}
+
 type User {
   id: ID
   publicAddress: String
@@ -56,6 +65,14 @@ type VerificationResponse {
   error: Error
   payload: VerificationPayload
 }
+
+input CreateInvoiceInput {
+  name: String
+  number: String
+  amount: Number
+  description: String
+}
+
 input UpdateWhereId {
   id: ID!
 }

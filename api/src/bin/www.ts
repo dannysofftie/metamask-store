@@ -9,7 +9,7 @@ import models from '../models';
 import { schema } from '../schema';
 
 export default class App {
-  private app: FastifyInstance;
+  public app: FastifyInstance;
 
   constructor() {
     this.app = fastify({ ignoreTrailingSlash: true, logger: { level: 'fatal' } });
@@ -64,6 +64,7 @@ export default class App {
       },
       prefix: false,
       subscription: true,
+      jit: 2,
     });
 
     await this.app.register(altairPlugin, { endpointURL: '/graphql', path: '/api/d/docs', baseURL: '/api/d/docs/', initialSettings: { theme: 'dracula' } });

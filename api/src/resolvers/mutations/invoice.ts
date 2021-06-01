@@ -1,6 +1,10 @@
 import { IResolvers } from 'mercurius';
 
 const invoiceMutations: IResolvers['Mutation'] = {
+  async createInvoice(root, args, ctx, info) {
+    await ctx.app.models.Invoice.create(args.input);
+    return { message: 'Invoice created' };
+  },
   async updateInvoiceTransaction(root, args, ctx, info) {
     // update transaction hash
     if (args.input?.transactionHash) {

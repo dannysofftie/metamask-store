@@ -18,6 +18,18 @@ export type Scalars = {
   _FieldSet: any;
 };
 
+export type ApiError = {
+  __typename?: 'ApiError';
+  name?: Maybe<Scalars['String']>;
+  message?: Maybe<Scalars['String']>;
+};
+
+export type ApiResponse = {
+  __typename?: 'ApiResponse';
+  message?: Maybe<Scalars['String']>;
+  error?: Maybe<ApiError>;
+};
+
 export type User = {
   __typename?: 'User';
   id?: Maybe<Scalars['ID']>;
@@ -88,6 +100,13 @@ export type VerificationResponse = {
   payload?: Maybe<VerificationPayload>;
 };
 
+export type CreateInvoiceInput = {
+  name?: Maybe<Scalars['String']>;
+  number?: Maybe<Scalars['String']>;
+  amount?: Maybe<Scalars['Number']>;
+  description?: Maybe<Scalars['String']>;
+};
+
 export type UpdateWhereId = {
   id: Scalars['ID'];
 };
@@ -126,6 +145,8 @@ export type Mutation = {
   generateNonce?: Maybe<NonceResponse>;
   /** Expects publicAddress and signature to verify if this publicAddress has signed the correct nonce */
   verifySignature?: Maybe<VerificationResponse>;
+  /** Create invoice */
+  createInvoice?: Maybe<ApiResponse>;
   /** Update invoice */
   updateInvoiceTransaction?: Maybe<UpdateResponse>;
 };
@@ -136,6 +157,10 @@ export type MutationgenerateNonceArgs = {
 
 export type MutationverifySignatureArgs = {
   input: SignatureVerificationInput;
+};
+
+export type MutationcreateInvoiceArgs = {
+  input: CreateInvoiceInput;
 };
 
 export type MutationupdateInvoiceTransactionArgs = {
@@ -196,9 +221,11 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 export type ResolversTypes = ResolversObject<{
   Date: ResolverTypeWrapper<Scalars['Date']>;
   Number: ResolverTypeWrapper<Scalars['Number']>;
+  ApiError: ResolverTypeWrapper<ApiError>;
+  String: ResolverTypeWrapper<Scalars['String']>;
+  ApiResponse: ResolverTypeWrapper<ApiResponse>;
   User: ResolverTypeWrapper<User>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
-  String: ResolverTypeWrapper<Scalars['String']>;
   Invoice: ResolverTypeWrapper<Invoice>;
   Transaction: ResolverTypeWrapper<Transaction>;
   TransactionBlock: ResolverTypeWrapper<TransactionBlock>;
@@ -207,6 +234,7 @@ export type ResolversTypes = ResolversObject<{
   Error: ResolverTypeWrapper<Error>;
   VerificationPayload: ResolverTypeWrapper<VerificationPayload>;
   VerificationResponse: ResolverTypeWrapper<VerificationResponse>;
+  CreateInvoiceInput: CreateInvoiceInput;
   UpdateWhereId: UpdateWhereId;
   TransactionBlockInput: TransactionBlockInput;
   InvoiceTransactionInput: InvoiceTransactionInput;
@@ -221,9 +249,11 @@ export type ResolversTypes = ResolversObject<{
 export type ResolversParentTypes = ResolversObject<{
   Date: Scalars['Date'];
   Number: Scalars['Number'];
+  ApiError: ApiError;
+  String: Scalars['String'];
+  ApiResponse: ApiResponse;
   User: User;
   ID: Scalars['ID'];
-  String: Scalars['String'];
   Invoice: Invoice;
   Transaction: Transaction;
   TransactionBlock: TransactionBlock;
@@ -232,6 +262,7 @@ export type ResolversParentTypes = ResolversObject<{
   Error: Error;
   VerificationPayload: VerificationPayload;
   VerificationResponse: VerificationResponse;
+  CreateInvoiceInput: CreateInvoiceInput;
   UpdateWhereId: UpdateWhereId;
   TransactionBlockInput: TransactionBlockInput;
   InvoiceTransactionInput: InvoiceTransactionInput;
@@ -249,6 +280,18 @@ export interface DateScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes
 export interface NumberScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Number'], any> {
   name: 'Number';
 }
+
+export type ApiErrorResolvers<ContextType = MercuriusContext, ParentType extends ResolversParentTypes['ApiError'] = ResolversParentTypes['ApiError']> = ResolversObject<{
+  name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  message?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
+export type ApiResponseResolvers<ContextType = MercuriusContext, ParentType extends ResolversParentTypes['ApiResponse'] = ResolversParentTypes['ApiResponse']> = ResolversObject<{
+  message?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  error?: Resolver<Maybe<ResolversTypes['ApiError']>, ParentType, ContextType>;
+  isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
 
 export type UserResolvers<ContextType = MercuriusContext, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = ResolversObject<{
   id?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
@@ -327,6 +370,7 @@ export type QueryResolvers<ContextType = MercuriusContext, ParentType extends Re
 export type MutationResolvers<ContextType = MercuriusContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
   generateNonce?: Resolver<Maybe<ResolversTypes['NonceResponse']>, ParentType, ContextType, RequireFields<MutationgenerateNonceArgs, 'address'>>;
   verifySignature?: Resolver<Maybe<ResolversTypes['VerificationResponse']>, ParentType, ContextType, RequireFields<MutationverifySignatureArgs, 'input'>>;
+  createInvoice?: Resolver<Maybe<ResolversTypes['ApiResponse']>, ParentType, ContextType, RequireFields<MutationcreateInvoiceArgs, 'input'>>;
   updateInvoiceTransaction?: Resolver<Maybe<ResolversTypes['UpdateResponse']>, ParentType, ContextType, RequireFields<MutationupdateInvoiceTransactionArgs, 'input' | 'where'>>;
 }>;
 
@@ -337,6 +381,8 @@ export type SubscriptionResolvers<ContextType = MercuriusContext, ParentType ext
 export type Resolvers<ContextType = MercuriusContext> = ResolversObject<{
   Date?: GraphQLScalarType;
   Number?: GraphQLScalarType;
+  ApiError?: ApiErrorResolvers<ContextType>;
+  ApiResponse?: ApiResponseResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
   Invoice?: InvoiceResolvers<ContextType>;
   Transaction?: TransactionResolvers<ContextType>;
@@ -375,6 +421,16 @@ type LoaderResolver<TReturn, TObj, TParams, TContext> =
       };
     };
 export interface Loaders<TContext = import('mercurius').MercuriusContext & { reply: import('fastify').FastifyReply }> {
+  ApiError?: {
+    name?: LoaderResolver<Maybe<Scalars['String']>, ApiError, {}, TContext>;
+    message?: LoaderResolver<Maybe<Scalars['String']>, ApiError, {}, TContext>;
+  };
+
+  ApiResponse?: {
+    message?: LoaderResolver<Maybe<Scalars['String']>, ApiResponse, {}, TContext>;
+    error?: LoaderResolver<Maybe<ApiError>, ApiResponse, {}, TContext>;
+  };
+
   User?: {
     id?: LoaderResolver<Maybe<Scalars['ID']>, User, {}, TContext>;
     publicAddress?: LoaderResolver<Maybe<Scalars['String']>, User, {}, TContext>;

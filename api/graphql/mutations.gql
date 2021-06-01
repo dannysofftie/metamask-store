@@ -8,6 +8,10 @@ type Mutation {
   """
   verifySignature(input: SignatureVerificationInput!): VerificationResponse
   """
+  Create invoice
+  """
+  createInvoice(input: CreateInvoiceInput!): ApiResponse
+  """
   Update invoice
   """
   updateInvoiceTransaction(input: InvoiceTransactionInput!, where: UpdateWhereId!): UpdateResponse

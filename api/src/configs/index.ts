@@ -9,6 +9,6 @@ export interface IConfigs {
 
 export const configs: IConfigs = {
   jwtSecret: process.env.JWT_SECRET,
-  mongoUri: process.env.MONGO_URI,
+  mongoUri: process.env.NODE_ENV === 'test' ? process.env.MONGO_TEST_URI : process.env.MONGO_URI,
   port: process.env.PORT || 4200,
 };
